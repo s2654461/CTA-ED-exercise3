@@ -70,15 +70,19 @@ docvars(tweets_corpus, "username") <- tweets$username
 
 tweets_corpus
 ```
+```{r}
+
+```
 
 We are now ready to reformat the data into a document feature matrix.
 
 ```{r}
-dfmat <- dfm(tokens(tweets_corpus),
-             remove_punct = TRUE, 
-             remove = stopwords("english"))
 
-dfmat
+tokenabc <- tokens(tweets_corpus,
+             remove_punct = TRUE) %>% 
+             tokens_remove(stopwords("english"))
+
+dfmat <- dfm(tokenabc)
 ```
 
 Note that when we do this we need to have tokenized our corpus object first. We can do this by wrapping the `tokens` function inside the `dfm()` function as above. 
